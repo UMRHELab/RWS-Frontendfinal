@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MRWS - Public Environmental Observatory</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@3.0.1/dist/chartjs-plugin-annotation.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+    <link rel="stylesheet" href="../styles/styles.css">
+    <link rel="stylesheet" href="../styles/sidebar.css">
+    <link rel="stylesheet" href="../styles/footer.css">
+    <link rel="stylesheet" href="../styles/index.css">
+</head>
+<body>
+
+    <div class="mobile-nav-backdrop"></div>
+
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <img src="../icon/rwsbiglogo.png" alt="RWS Logo" class="sidebar-logo-img">
+        </div>
+
+        <nav class="sidebar-nav">
+            <p class="sidebar-section-label">Navigate</p>
+
+            <a href="index.html#overview" class="sidebar-link">
+                <img src="../icon/overview.png" alt="Overview" class="sidebar-nav-icon"> Overview
+            </a>
+            <a href="index.html#conditions" class="sidebar-link">
+                <img src="../icon/currentcon.png" alt="Current Conditions" class="sidebar-nav-icon"> Current Conditions
+            </a>
+
+            <a href="measures.html" class="sidebar-link"><img src="../icon/measure.png" alt="What we measure" class="sidebar-nav-icon"> What we measure</a>
+            <a href="news.html"           class="sidebar-link"><img src="../icon/news.png" alt="News" class="sidebar-nav-icon"> News</a>
+            <a href="glossary.html"       class="sidebar-link"><img src="../icon/about.png" alt="Glossary" class="sidebar-nav-icon"> Glossary</a>
+        </nav>
+    </aside>
+
+    <div class="main-viewport">
+
+        <header class="global-header">
+            <button class="mobile-nav-toggle" aria-label="Open menu"><span></span><span></span><span></span></button>
+            <div class="header-left">
+                <div class="network-badge">
+                    <span class="network-ping-dot"></span>
+                    Live Network Data
+                </div>
+                <span id="top-bar-clock" class="live-clock">--:--:--</span>
+            </div>
+            <div class="header-right">
+                <div class="local-weather-pill">
+                    <span>Ann Arbor, MI</span>
+                    <span class="separator"></span>
+                    <span class="temp-highlight" id="nav-temp">—</span>
+                </div>
+            </div>
+        </header>
+
+        <main class="workspace-container index-content">
+
+            <div class="station-hero-banner">
+                <div class="hero-identity-block">
+                    <div class="hero-weather-summary">
+                        <svg width="52" height="52" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <g class="sun-rays">
+                                <line x1="26" y1="2"  x2="26" y2="10" stroke="#ffcb05" stroke-width="2.5" stroke-linecap="round"></line>
+                                <line x1="26" y1="42" x2="26" y2="50" stroke="#ffcb05" stroke-width="2.5" stroke-linecap="round"></line>
+                                <line x1="2"  y1="26" x2="10" y2="26" stroke="#ffcb05" stroke-width="2.5" stroke-linecap="round"></line>
+                                <line x1="42" y1="26" x2="50" y2="26" stroke="#ffcb05" stroke-width="2.5" stroke-linecap="round"></line>
+                                <line x1="8.1"  y1="8.1"  x2="13.8" y2="13.8" stroke="#ffcb05" stroke-width="2.5" stroke-linecap="round"></line>
+                                <line x1="38.2" y1="38.2" x2="43.9" y2="43.9" stroke="#ffcb05" stroke-width="2.5" stroke-linecap="round"></line>
+                                <line x1="43.9" y1="8.1"  x2="38.2" y2="13.8" stroke="#ffcb05" stroke-width="2.5" stroke-linecap="round"></line>
+                                <line x1="13.8" y1="38.2" x2="8.1"  y2="43.9" stroke="#ffcb05" stroke-width="2.5" stroke-linecap="round"></line>
+                            </g>
+                            <circle cx="26" cy="26" r="10" fill="#ffcb05"/>
+                        </svg>
+                        <div>
+                            <div class="hero-temp-readout"><span id="weather-temp">—</span><span class="hero-temp-unit">°F</span></div>
+                        </div>
+                    </div>
+                    <div class="hero-meta-titles">
+                        <h1 id="greeting-text">Good Evening!</h1>
+                        <p class="subtitle">Welcome to the Radiation Weather Station Database</p>
+                        <p class="caption">University of Michigan North Campus perimeter sensor array.</p>
+                    </div>
+                </div>
+
+                <div class="hero-action-block">
+                    <a href="#conditions" class="back-btn hero-forecast-link">
+                        <span class="rad-explain-btn__info-badge hero-info-badge">i</span>
+                        See Full Forecast
+                        <span class="hero-forecast-arrow">›</span>
+                    </a>
+                    <span class="banner-date-stamp" id="greeting-date">Thursday, June 25, 2026</span>
+                </div>
+            </div>
+
+            <section id="about">
+                <div class="about-row">
+                    <div class="about-card">
+                        <span class="about-eyebrow">What we measure</span>
+                        <h2>Live radiation, weather, and soil data</h2>
+                        <p>RWS is a public tool for browsing live and historical radiation, weather, and soil readings from sensors across North Campus.</p>
+
+                        <div class="about-cta-row">
+                            <a href="glossary.html" class="glossary-btn">
+                                <span class="glossary-btn-text">
+                                    <span class="glossary-btn-question">Confused on the terms?</span>
+                                    <span class="glossary-btn-cta">Go to Glossary</span>
+                                </span>
+                            </a>
+                            <a href="measures.html" class="glossary-btn glossary-btn--secondary">
+                                <span class="glossary-btn-text">
+                                    <span class="glossary-btn-question">Want the full picture?</span>
+                                    <span class="glossary-btn-cta">What We Measure</span>
+                                </span>
+                            </a>
+                        </div>
+
+                        <p class="station-hover-hint">Try hovering over these cards!</p>
+                        <div class="station-hover-hint-arrow">&darr;</div>
+                        <div class="station-hover-row">
+                            <div class="station-hover-card" data-station="roof" data-diagram="images/about-diagram-roof.png">
+                                <h4>Rooftop</h4>
+                                <span class="station-room-num">Room 1958</span>
+                            </div>
+                            <div class="station-hover-card" data-station="mainlab" data-diagram="images/about-diagram-mainlab.png">
+                                <h4>Main Lab</h4>
+                                <span class="station-room-num">Room 1962</span>
+                            </div>
+                            <div class="station-hover-card" data-station="basement" data-diagram="images/about-diagram-basement.png">
+                                <h4>Basement</h4>
+                                <span class="station-room-num">Room G963A</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="about-diagram-col">
+                        <img src="images/about-diagram.png" alt="Building cross-section diagram showing rooftop, lab, and basement sensor locations" class="about-diagram-img" id="about-diagram-img" data-default-src="images/about-diagram.png">
+                    </div>
+                </div>
+            </section>
+
+            <section class="measures-teaser">
+                <div class="measures-teaser-image">
+                    <img src="images/ners_indoor.jpg" alt="Building diagram showing sensor locations">
+                </div>
+                <div class="measures-teaser-content">
+                    <span class="measures-teaser-eyebrow">About the data</span>
+                    <h2>Understanding Our Environment</h2>
+                    <p>We measure many things to understand our environment and keep our campus community informed, from background radiation to soil moisture, across every station we monitor.</p>
+                    <a href="measures.html" class="measures-teaser-btn">Learn more &rarr;</a>
+                </div>
+            </section>
+
+            <section id="overview">
+                <h2 class="explorer-section-title">Explore station data</h2>
+                <div class="map-grid">
+                    <div class="explorer-filter-col">
+                        <div class="filter-group">
+                            <label class="filter-label" for="building">Building</label>
+                            <select id="building" class="filter-select" onchange="onBuildingChange()">
+                                <option value="Cooley">Cooley</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label class="filter-label" for="room">Room</label>
+                            <select id="room" class="filter-select" disabled onchange="onRoomChange()"></select>
+                        </div>
+                        <div class="filter-group">
+                            <label class="filter-label" for="sensor">Sensor</label>
+                            <select id="sensor" class="filter-select" disabled onchange="onSensorChange()"></select>
+                        </div>
+                        <div class="filter-group">
+                            <label class="filter-label" for="metric">Data Type</label>
+                            <select id="metric" class="filter-select" disabled></select>
+                        </div>
+                        <div class="filter-group">
+                            <label class="filter-label" for="time-range">Time Range</label>
+                            <select id="time-range" class="filter-select">
+                                <option value="1">1 Day</option>
+                                <option value="7" selected>7 Days</option>
+                                <option value="30">30 Days</option>
+                            </select>
+                        </div>
+                        <button id="submit-query-btn" class="filter-submit" onclick="onSubmit()">Get Data</button>
+                    </div>
+
+                    <div class="explorer-embed">
+                        <h3 id="explorer-chart-title" class="explorer-chart-title">The chart will appear here</h3>
+                        <div class="explorer-chart-wrap">
+                            <canvas id="explorer-chart"></canvas>
+                        </div>
+
+                        <div id="explorer-results" class="explorer-results hidden">
+                            <div class="explorer-results-row">
+                                <div class="explorer-stat">
+                                    <span class="explorer-stat-label">Average</span>
+                                    <span class="explorer-stat-value" id="explorer-average">—</span>
+                                </div>
+                                <div class="explorer-stat">
+                                    <span class="explorer-stat-label">Readings</span>
+                                    <span class="explorer-stat-value explorer-stat-value--accent" id="explorer-count">—</span>
+                                </div>
+                            </div>
+                            <div class="explorer-table-header">
+                                <p class="explorer-table-note" id="explorer-table-note"></p>
+                                <button id="explorer-export-btn" class="explorer-export-btn" onclick="exportExplorerCSV()">Export CSV</button>
+                            </div>
+                            <div class="explorer-table-wrap">
+                                <table class="explorer-table">
+                                    <thead>
+                                        <tr><th id="explorer-table-col1">Label</th><th id="explorer-table-col2">Value</th></tr>
+                                    </thead>
+                                    <tbody id="explorer-table-body"></tbody>
+                                </table>
+                            </div>
+                            <button id="explorer-expand-btn" class="explorer-expand-btn hidden" onclick="toggleExplorerTableExpand()">Show more ▾</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="conditions" class="env-section">
+                <div class="env-header">
+                    <div>
+                        <h2>Environment Overview</h2>
+                    </div>
+                    <div class="live-badge">
+                        <span class="live-badge-dot"></span>
+                        <span id="live-badge-text">Live</span>
+                    </div>
+                </div>
+
+                <div class="env-grid">
+                    <div class="sparkline-area">
+                        <div class="sparkline-card sparkline-card--temp">
+                            <div class="sparkline-header">
+                                <span class="sparkline-label sparkline-label--temp">Air Temp</span>
+                                <span class="sparkline-unit">°F</span>
+                            </div>
+                            <div class="sparkline-value sparkline-value--temp" id="current-temp">—</div>
+                            <div class="sparkline-canvas-wrap"><canvas id="chart-temp"></canvas></div>
+                        </div>
+
+                        <div class="sparkline-card sparkline-card--humidity">
+                            <div class="sparkline-header">
+                                <span class="sparkline-label sparkline-label--humidity">Humidity</span>
+                                <span class="sparkline-unit">%</span>
+                            </div>
+                            <div class="sparkline-value sparkline-value--humidity" id="current-humidity">—</div>
+                            <div class="sparkline-canvas-wrap"><canvas id="chart-humidity"></canvas></div>
+                        </div>
+
+                        <div class="sparkline-card sparkline-card--wind">
+                            <div class="sparkline-header">
+                                <span class="sparkline-label sparkline-label--wind">Wind</span>
+                                <span class="sparkline-unit">mph</span>
+                            </div>
+                            <div class="sparkline-value sparkline-value--wind" id="current-wind">—</div>
+                            <div class="sparkline-canvas-wrap"><canvas id="chart-wind"></canvas></div>
+                        </div>
+
+                        <div class="sparkline-card sparkline-card--rain">
+                            <div class="sparkline-header">
+                                <span class="sparkline-label sparkline-label--rain">Rainfall</span>
+                                <span class="sparkline-unit">in</span>
+                            </div>
+                            <div class="sparkline-value sparkline-value--rain" id="current-rain">—</div>
+                            <div class="sparkline-canvas-wrap"><canvas id="chart-rain"></canvas></div>
+                        </div>
+
+                        <div class="sparkline-card sparkline-card--solar">
+                            <div class="sparkline-header">
+                                <span class="sparkline-label sparkline-label--solar">Solar</span>
+                                <span class="sparkline-unit">Lux</span>
+                            </div>
+                            <div class="sparkline-value sparkline-value--solar" id="current-solar">—</div>
+                            <div class="sparkline-canvas-wrap"><canvas id="chart-solar"></canvas></div>
+                        </div>
+
+                        <div class="sparkline-card sparkline-card--radon">
+                            <div class="sparkline-header">
+                                <span class="sparkline-label sparkline-label--radon">Radon</span>
+                                <span class="sparkline-unit">pCi/L</span>
+                            </div>
+                            <div class="sparkline-value sparkline-value--radon" id="current-radon">—</div>
+                            <div class="sparkline-canvas-wrap"><canvas id="chart-radon"></canvas></div>
+                        </div>
+                    </div>
+
+                    <div class="rad-col">
+                        <div class="rad-panel">
+                            <div class="rad-panel-top">
+                                <span class="rad-section-title">Radiation Level</span>
+                                <div id="rad-status-text" class="rad-status-text">Normal</div>
+                                <div class="rad-value-row">
+                                    <span id="current-rad" class="rad-value-number">—</span>
+                                    <span class="rad-value-unit">pCi/L</span>
+                                </div>
+                                <p class="rad-range-note" id="rad-range-text">Typical background radiation</p>
+                            </div>
+
+                            <div id="rad-shield" class="rad-shield-ring">
+                                <svg id="rad-shield-icon" class="rad-shield-icon" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/>
+                                </svg>
+                            </div>
+
+                            <div id="rad-info-box" class="rad-info-chip">
+                                <span id="rad-info-icon" class="rad-info-icon">●</span>
+                                <div>
+                                    <h4 id="rad-info-title">Safe range.</h4>
+                                    <p id="rad-info-text">Radiation levels naturally vary.</p>
+                                </div>
+                            </div>
+
+                            <button onclick="openModal('rad-info-modal')" class="rad-explain-btn">
+                                <span class="info-badge">i</span>
+                                <span>What does this mean?</span>
+                                <span class="arrow">›</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="measures" class="info-cards-grid">
+                <div class="info-card info-card--half">
+                    <div>
+                        <h3>News &amp; Updates</h3>
+                        <div class="news-compact-list">
+                            <div class="news-compact-item">
+                                <div class="news-card-thumbnail news-card-thumbnail--sm">
+                                    <img src="images/Screenshot 2026-05-30 at 7.42.17 PM 1.png" alt="">
+                                </div>
+                                <div class="news-compact-text">
+                                    <span class="news-card-tag news-tag--update">Update</span>
+                                    <h4>New dashboard is up</h4>
+                                    <span class="news-compact-date">July 3, 2026</span>
+                                </div>
+                            </div>
+                            <div class="news-compact-item">
+                                <div class="news-card-thumbnail news-card-thumbnail--sm">
+                                    <img src="images/Gemini_Generated_Image_4f3vh54f3vh54f3v.png" alt="">
+                                </div>
+                                <div class="news-compact-text">
+                                    <span class="news-card-tag news-tag--info">Info</span>
+                                    <h4>Adding more sensors to get accurate measurements</h4>
+                                    <span class="news-compact-date">June 26, 2026</span>
+                                </div>
+                            </div>
+                            <div class="news-compact-item">
+                                <div class="news-card-thumbnail news-card-thumbnail--sm">
+                                    <img src="images/Gemini_Generated_Image_bc0c44bc0c44bc0c.png" alt="">
+                                </div>
+                                <div class="news-compact-text">
+                                    <span class="news-card-tag news-tag--maintenance">Maintenance</span>
+                                    <h4>CS Facility roof sensor will be updated soon</h4>
+                                    <span class="news-compact-date">June 11, 2026</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="news.html" class="info-card-btn">View All News ›</a>
+                </div>
+
+                <div class="info-card info-card--half">
+                    <div>
+                        <h3>Live Camera</h3>
+                        <div class="camera-thumbnail">
+                            <img src="images/Screenshot 2026-05-30 at 9.43.34 PM 1.png" alt="Live Camera">
+                            <div class="camera-live-tag">Live</div>
+                        </div>
+                        <div class="camera-dots">
+                            <span class="camera-dot camera-dot--active"></span>
+                            <span class="camera-dot camera-dot--inactive"></span>
+                            <span class="camera-dot camera-dot--inactive"></span>
+                        </div>
+                    </div>
+                    <div class="camera-footer">
+                        <div>
+                            <h4>RWS Arbor Station</h4>
+                            <p>Ann Arbor, MI</p>
+                        </div>
+                        <button class="camera-view-btn">View All ›</button>
+                    </div>
+                </div>
+            </section>
+
+            <div id="footer-placeholder"></div>
+        </main>
+    </div>
+
+    <div id="rad-info-modal" class="overlay-modal hidden" role="dialog" aria-modal="true" aria-labelledby="rad-info-modal-title">
+        <div class="rad-modal-card">
+            <div class="modal-header">
+                <h2 id="rad-info-modal-title">What is background radiation?</h2>
+                <button onclick="closeModal('rad-info-modal')" class="modal-close-btn" aria-label="Close">✕</button>
+            </div>
+
+            <div class="rad-modal-body">
+                <p class="rad-intro">Background radiation is everywhere: it comes from the ground, the air, space, and even the materials buildings are made of. The numbers you see here are completely normal and not harmful.</p>
+
+                <h4 class="rad-section-title">What the status labels mean</h4>
+                <div class="tier-grid">
+                    <div class="tier-card tier-card--normal">
+                        <div class="tier-dot"></div>
+                        <div class="tier-label">Normal</div>
+                        <div class="tier-sub">below 2 pCi/L</div>
+                    </div>
+                    <div class="tier-card tier-card--elevated">
+                        <div class="tier-dot"></div>
+                        <div class="tier-label">Elevated</div>
+                        <div class="tier-sub">approaching the EPA action level</div>
+                    </div>
+                    <div class="tier-card tier-card--action">
+                        <div class="tier-dot"></div>
+                        <div class="tier-label">High</div>
+                        <div class="tier-sub">above the EPA action level of 4 pCi/L</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/shared.js"></script>
+    <script src="js/dashboard-charts.js"></script>
+    <script src="js/dashboard-live.js"></script>
+    <script src="js/simple-explorer.js"></script>
+</body>
+</html>

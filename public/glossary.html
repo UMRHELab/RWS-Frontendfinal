@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MRWS - Glossary</title>
+    <link rel="stylesheet" href="../styles/styles.css">
+    <link rel="stylesheet" href="../styles/sidebar.css">
+    <link rel="stylesheet" href="../styles/footer.css">
+    <link rel="stylesheet" href="../styles/glossary.css">
+</head>
+<body>
+
+    <div class="mobile-nav-backdrop"></div>
+
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <img src="../icon/rwsbiglogo.png" alt="RWS Logo" class="sidebar-logo-img">
+        </div>
+
+        <nav class="sidebar-nav">
+            <p class="sidebar-section-label">Navigate</p>
+
+            <a href="index.html#overview" class="sidebar-link">
+                <img src="../icon/overview.png" alt="Overview" class="sidebar-nav-icon"> Overview
+            </a>
+            <a href="index.html#conditions" class="sidebar-link">
+                <img src="../icon/currentcon.png" alt="Current Conditions" class="sidebar-nav-icon"> Current Conditions
+            </a>
+            <a href="measures.html" class="sidebar-link"><img src="../icon/measure.png" alt="What we measure" class="sidebar-nav-icon"> What we measure</a>
+            <a href="news.html"           class="sidebar-link"><img src="../icon/news.png" alt="News" class="sidebar-nav-icon"> News</a>
+            <a href="glossary.html"       class="sidebar-link"><img src="../icon/about.png" alt="Glossary" class="sidebar-nav-icon"> Glossary</a>
+        </nav>
+    </aside>
+
+    <div class="main-viewport">
+        <header class="global-header glossary-mobile-header">
+            <button class="mobile-nav-toggle" aria-label="Open menu"><span></span><span></span><span></span></button>
+        </header>
+        <main class="glossary-main">
+            <h1>Glossary</h1>
+            <p class="glossary-intro">
+                Definitions for the scientific terms and sensor names.
+            </p>
+
+            <div class="glossary-filter-pills" role="group" aria-label="Filter by category">
+                <button class="glossary-pill glossary-pill--active" data-filter="all" aria-pressed="true">All</button>
+                <button class="glossary-pill" data-filter="explorer" aria-pressed="false">Data Explorer</button>
+                <button class="glossary-pill" data-filter="radiation" aria-pressed="false">Radiation &amp; Radon</button>
+                <button class="glossary-pill" data-filter="weather" aria-pressed="false">Weather &amp; Environment</button>
+            </div>
+
+            <label for="glossary-search" class="sr-only">Search glossary terms</label>
+            <input id="glossary-search" class="glossary-search-input" type="text" placeholder="Search glossary..">
+            <p class="glossary-count" id="glossary-count" aria-live="polite"></p>
+
+            <section class="glossary-section" data-category="explorer">
+                <h2 class="glossary-section-title">Data Explorer</h2>
+
+                <div class="glossary-term">
+                    <h3>Building / Room / Sensor</h3>
+                    <p>The three dropdowns that narrow down exactly which physical sensor you're looking at: pick the building first, then the room inside it, then the specific sensor in that room.</p>
+                </div>
+                <div class="glossary-term">
+                    <h3>Data Type</h3>
+                    <p>Which measurement you want from the sensor you picked, for example radon concentration, temperature, or a radiation energy spectrum ("counts").</p>
+                </div>
+                <div class="glossary-term">
+                    <h3>Time Range</h3>
+                    <p>How far back the chart and table should go: the last 1, 7, or 30 days.</p>
+                </div>
+                <div class="glossary-term">
+                    <h3>Average</h3>
+                    <p>The mean of every value your query returned, shown once you click "Get Data."</p>
+                </div>
+                <div class="glossary-term">
+                    <h3>Readings</h3>
+                    <p>How many individual data points your query returned in total.</p>
+                </div>
+                <div class="glossary-term">
+                    <h3>Timestamp / Energy</h3>
+                    <p>The label on each table row: a date and time for most data types, or an energy level for the "counts" data type, which plots a radiation spectrum instead of a value over time.</p>
+                </div>
+                <div class="glossary-term">
+                    <h3>Counts</h3>
+                    <p>For the "counts" data type, how many radiation particles were detected at a given energy level. This is what draws a spectrum chart instead of a line-over-time chart.</p>
+                </div>
+                <div class="glossary-term">
+                    <h3>Export CSV</h3>
+                    <p>Downloads everything your last query returned as a spreadsheet-ready .csv file, not just the rows currently shown in the table.</p>
+                </div>
+            </section>
+
+            <section class="glossary-section" data-category="radiation">
+                <h2 class="glossary-section-title">Radiation &amp; Radon</h2>
+
+                <div class="glossary-term">
+                    <h3>Background radiation</h3>
+                    <p>Radiation that's naturally present everywhere, from the ground, the air, space, and even the materials buildings are made of. The levels shown on this site are normal and not harmful.</p>
+                </div>
+                <div class="glossary-term">
+                    <h3>Gamma radiation</h3>
+                    <p>A type of radiation counted by the Geiger tubes at our stations, reported as counts per minute.</p>
+                </div>
+                <div class="glossary-term">
+                    <h3>Geiger tube / Geiger counter</h3>
+                    <p>The detector inside a radiation sensor that registers a "click" each time it's struck by a particle of radiation. More clicks per minute means a higher radiation level.</p>
+                </div>
+                <div class="glossary-term">
+                    <h3>Counts per minute (cpm)</h3>
+                    <p>How many radiation particles a Geiger tube detects in one minute: the raw number a radiation sensor reports before it's converted into other units.</p>
+                </div>
+                <div class="glossary-term">
+                    <h3>pCi/L (picocuries per liter)</h3>
+                    <p>The unit used to measure radon concentration in air. It tells you how many radioactive decays are happening per liter of air.</p>
+                </div>
+                <div class="glossary-term">
+                    <h3>Radon</h3>
+                    <p>A naturally occurring radioactive gas that seeps up from the ground. It's colorless and odorless, which is why it has to be measured with a sensor rather than noticed directly.</p>
+                </div>
+                <div class="glossary-term">
+                    <h3>RAD8</h3>
+                    <p>A continuous radon monitor used at some of our stations. It splits incoming radiation into hundreds of energy channels (its energy spectrum) before reporting a radon reading.</p>
+                </div>
+                <div class="glossary-term">
+                    <h3>RadonEye</h3>
+                    <p>A compact radon detector used at some indoor stations to track radon concentration in pCi/L.</p>
+                </div>
+                <div class="glossary-term">
+                    <h3>Sword / Gamon-D / Gamon-S</h3>
+                    <p>Other models of radiation detectors used across the RWS network. Like the RAD8, they report an energy spectrum that gets converted into a radiation reading using each device's own calibration.</p>
+                </div>
+                <div class="glossary-term">
+                    <h3>EPA action level</h3>
+                    <p>The U.S. Environmental Protection Agency's recommended threshold for radon: 4 pCi/L. Above that, the EPA recommends taking action to reduce radon levels.</p>
+                </div>
+                <div class="glossary-term">
+                    <h3>Normal / Elevated / High</h3>
+                    <p>The three status labels used on this site for radiation readings: Normal is below 2 pCi/L, Elevated is approaching the EPA action level, and High is above the EPA action level of 4 pCi/L.</p>
+                </div>
+            </section>
+
+            <section class="glossary-section" data-category="weather">
+                <h2 class="glossary-section-title">Weather &amp; Environment</h2>
+
+                <div class="glossary-term">
+                    <h3>Air temperature &amp; humidity</h3>
+                    <p>The temperature of the outside air (°F) and how much water vapor is in it, shown as a percentage. Both are measured by a BME680 sensor at some stations.</p>
+                </div>
+                <div class="glossary-term">
+                    <h3>Barometric pressure</h3>
+                    <p>Atmospheric pressure: the weight of the air pushing down at a station's location. Falling pressure often signals a change in weather is coming.</p>
+                </div>
+                <div class="glossary-term">
+                    <h3>Wind speed &amp; direction</h3>
+                    <p>How fast the wind is blowing (in mph) and which direction it's coming from, recorded by the rooftop weather logger.</p>
+                </div>
+                <div class="glossary-term">
+                    <h3>Rainfall</h3>
+                    <p>How much rain has fallen, measured in inches.</p>
+                </div>
+                <div class="glossary-term">
+                    <h3>Solar radiation</h3>
+                    <p>How much sunlight energy is hitting the rooftop sensor, used as a general measure of incoming sunlight intensity.</p>
+                </div>
+                <div class="glossary-term">
+                    <h3>Soil moisture &amp; temperature</h3>
+                    <p>How wet the ground is, and how warm it is a few inches below the surface. Together they help track ground conditions.</p>
+                </div>
+                <div class="glossary-term">
+                    <h3>Datalogger</h3>
+                    <p>The on-site device that reads all the connected sensors at a station and logs a new set of measurements every few minutes.</p>
+                </div>
+            </section>
+        </main>
+
+        <div id="footer-placeholder"></div>
+    </div>
+
+    <script src="js/shared.js"></script>
+    <script src="js/glossary.js"></script>
+</body>
+</html>

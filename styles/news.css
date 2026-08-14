@@ -1,0 +1,104 @@
+.news-main {
+    flex: 1 1 0%;
+    padding: 24px 32px;
+    color: #fff;
+}
+
+.news-title {
+    margin: 0 0 1.5rem;
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: #fff;
+}
+
+/* ── Hero + side list ─────────────────────────────────────────────────── */
+.news-feature-grid {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr;
+    gap: 1.5rem;
+    align-items: start;
+}
+@media (max-width: 900px) {
+    .news-feature-grid { grid-template-columns: 1fr; }
+}
+
+.news-hero-card, .news-side-card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(148, 163, 184, 0.15);
+    border-radius: 0.9rem;
+    overflow: hidden;
+}
+
+.news-hero-body { padding: 1.25rem 1.4rem 1.5rem; }
+.news-hero-title {
+    margin: 0.6rem 0 0.5rem;
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #fff;
+}
+.news-hero-excerpt {
+    margin: 0;
+    color: #94a3b8;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    max-width: 620px;
+}
+
+.news-side-list { display: flex; flex-direction: column; gap: 1rem; }
+.news-side-card { display: flex; gap: 0.9rem; padding: 0.8rem; }
+.news-side-body { display: flex; flex-direction: column; gap: 0.3rem; min-width: 0; }
+.news-side-title {
+    margin: 0.1rem 0 0;
+    font-size: 0.98rem;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.35;
+}
+.news-side-excerpt {
+    margin: 0;
+    color: #94a3b8;
+    font-size: 0.82rem;
+    line-height: 1.5;
+}
+
+.news-card-meta { display: flex; align-items: center; gap: 0.6rem; }
+.news-card-date {
+    color: rgb(148 163 184);
+    font-size: 0.78rem;
+}
+
+.news-tag {
+    display: inline-block;
+    padding: 0.2rem 0.6rem;
+    border-radius: 999px;
+    font-size: 0.72rem;
+    font-weight: 700;
+}
+.news-tag--update      { background-color: rgba(34, 197, 94, 0.15); color: #4ade80; }
+.news-tag--maintenance { background-color: rgba(251, 113, 133, 0.15); color: #fb7185; }
+.news-tag--info         { background-color: rgba(96, 165, 250, 0.15); color: #60a5fa; }
+
+/* ── Placeholder images - no real photos fit this content, so a plain
+   branded tile stands in rather than a broken/missing image ────────────── */
+.news-img-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, rgba(255, 203, 5, 0.12), rgba(12, 20, 40, 0.6));
+    flex-shrink: 0;
+}
+.news-img-placeholder--hero { width: 100%; height: 260px; }
+.news-img-placeholder--side { width: 96px; height: 96px; border-radius: 0.6rem; }
+.news-placeholder-icon { font-size: 2rem; opacity: 0.5; }
+.news-img-placeholder--side .news-placeholder-icon { font-size: 1.5rem; }
+
+/* drop a real <img> in a placeholder div and it takes over automatically -
+   fills the box and the icon hides itself, no other markup changes needed */
+.news-img-placeholder img { width: 100%; height: 100%; object-fit: cover; border-radius: inherit; }
+.news-img-placeholder:has(img) { background: none; }
+.news-img-placeholder:has(img) .news-placeholder-icon { display: none; }
+
+@media (max-width: 600px) {
+    .news-side-card { flex-direction: column; }
+    .news-img-placeholder--side { width: 100%; height: 140px; }
+}

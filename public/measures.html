@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MRWS - What We Measure</title>
+    <link rel="stylesheet" href="../styles/styles.css">
+    <link rel="stylesheet" href="../styles/sidebar.css">
+    <link rel="stylesheet" href="../styles/footer.css">
+    <link rel="stylesheet" href="../styles/measures.css">
+    <link rel="stylesheet" href="../styles/index.css">
+</head>
+<body>
+
+    <div class="mobile-nav-backdrop"></div>
+
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <img src="../icon/rwsbiglogo.png" alt="RWS Logo" class="sidebar-logo-img">
+        </div>
+
+        <nav class="sidebar-nav">
+            <p class="sidebar-section-label">Navigate</p>
+
+            <a href="index.html#overview" class="sidebar-link">
+                <img src="../icon/overview.png" alt="Overview" class="sidebar-nav-icon"> Overview
+            </a>
+            <a href="index.html#conditions" class="sidebar-link">
+                <img src="../icon/currentcon.png" alt="Current Conditions" class="sidebar-nav-icon"> Current Conditions
+            </a>
+            <a href="measures.html" class="sidebar-link"><img src="../icon/measure.png" alt="What we measure" class="sidebar-nav-icon"> What we measure</a>
+            <a href="news.html" class="sidebar-link"><img src="../icon/news.png" alt="News" class="sidebar-nav-icon"> News</a>
+            <a href="glossary.html" class="sidebar-link"><img src="../icon/about.png" alt="Glossary" class="sidebar-nav-icon"> Glossary</a>
+        </nav>
+    </aside>
+
+    <div class="main-viewport">
+        <header class="global-header glossary-mobile-header">
+            <button class="mobile-nav-toggle" aria-label="Open menu"><span></span><span></span><span></span></button>
+        </header>
+
+        <main class="measures-main">
+            <h1>Understanding Our Environment</h1>
+            <p class="measures-intro">Here's a closer look at everything we track, from a quick overview below to exactly how each station takes its readings.</p>
+
+            <h2 class="sr-only">Quick overview</h2>
+            <div class="measures-grid">
+                <div class="measures-item">
+                    <div class="measures-item-header">
+                        <div class="measure-icon measure-icon--rad"><img src="../icon/rad.png" alt="Radiation"></div>
+                        <div>
+                            <h3>Radiation</h3>
+                            <p class="measures-item-subtitle">Natural background variation.</p>
+                        </div>
+                    </div>
+                    <div class="measures-item-image">
+                        <img src="images/radiation-illustration.jpg" alt="Illustration of radiation reaching Earth from the sun">
+                    </div>
+                    <p class="measures-item-desc">Background radiation is part of everyday life. It's in the ground, the air, and even the materials buildings are made of. We track it around the clock so you can see what's normal day to day.</p>
+                </div>
+                <div class="measures-item">
+                    <div class="measures-item-header">
+                        <div class="measure-icon measure-icon--solar"><img src="../icon/solar.png" alt="Solar"></div>
+                        <div>
+                            <h3>Solar</h3>
+                            <p class="measures-item-subtitle">Solar energy and climate metrics.</p>
+                        </div>
+                    </div>
+                    <div class="measures-item-image">
+                        <img src="images/solar-illustration.jpg" alt="Illustration of a neighborhood with rooftop solar panels">
+                    </div>
+                    <p class="measures-item-desc">From bright afternoons to overcast days, this tracks how much sunlight we're actually getting, giving useful context for both weather and solar energy potential.</p>
+                </div>
+                <div class="measures-item">
+                    <div class="measures-item-header">
+                        <div class="measure-icon measure-icon--weather"><img src="../icon/cloud_under.png" alt="Weather"></div>
+                        <div>
+                            <h3>Weather</h3>
+                            <p class="measures-item-subtitle">Temp, humidity, precipitation.</p>
+                        </div>
+                    </div>
+                    <div class="measures-item-image">
+                        <img src="images/weather-illustration.png" alt="Illustration of sun and rain clouds over mountains">
+                    </div>
+                    <p class="measures-item-desc">The conditions right outside your window, tracked live around the clock, from a passing rain shower to a sudden shift in wind.</p>
+                </div>
+                <div class="measures-item">
+                    <div class="measures-item-header">
+                        <div class="measure-icon measure-icon--soil"><img src="../icon/soil.png" alt="Soil"></div>
+                        <div>
+                            <h3>Soil</h3>
+                            <p class="measures-item-subtitle">Moisture and ground health.</p>
+                        </div>
+                    </div>
+                    <div class="measures-item-image">
+                        <img src="images/soil-illustration.png" alt="Illustration of soil layers underground">
+                    </div>
+                    <p class="measures-item-desc">What's happening a few inches below the surface matters too, so we keep an eye on it to understand how ground conditions shift over time.</p>
+                </div>
+                <a href="glossary.html" class="glossary-btn">
+                                <span class="glossary-btn-text">
+                                    <span class="glossary-btn-question">Confused on the terms?</span>
+                                    <span class="glossary-btn-cta">Go to Glossary</span>
+                                </span>
+                            </a>
+            </div>
+
+            <h2 class="measures-detail-heading">What Each Station Measures</h2>
+            <p class="measures-intro">The RWS network tracks the environment around North Campus with sensors at four stations, from the rooftop down to the basement. Here's what each group of instruments actually records.</p>
+
+            <div class="measures-detail-grid">
+                <div class="measures-detail-card measures-detail-card--weather" id="detail-weather">
+                    <h3>Weather</h3>
+                    <p>Air temperature, humidity, and barometric pressure from BME680 sensors, plus wind speed, wind direction, and rainfall from the roof station.</p>
+                </div>
+                <div class="measures-detail-card measures-detail-card--radiation" id="detail-radiation">
+                    <h3>Radiation</h3>
+                    <p>Background gamma radiation counted by Geiger tubes, reported as counts per minute. Levels here are typical background and vary naturally with weather and seasons.</p>
+                </div>
+                <div class="measures-detail-card measures-detail-card--radon" id="detail-radon">
+                    <h3>Radon</h3>
+                    <p>Radon concentration in air, measured by RadonEye detectors and a RAD8 monitor in pCi/L. Radon is a naturally occurring radioactive gas that seeps from the ground.</p>
+                </div>
+                <div class="measures-detail-card measures-detail-card--soil-sun" id="detail-soil-sun">
+                    <h3>Soil &amp; Sun</h3>
+                    <p>Soil moisture and soil temperature probes track ground conditions, while a solar radiation sensor measures incoming sunlight intensity.</p>
+                </div>
+            </div>
+        </main>
+
+        <div id="footer-placeholder"></div>
+    </div>
+
+    <script src="js/shared.js"></script>
+</body>
+</html>
