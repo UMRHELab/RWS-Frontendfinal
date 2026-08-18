@@ -1,6 +1,5 @@
 /* this page has no clock/weather header like index.html, just the hamburger
-   button for mobile - so the header bar itself should only show up there,
-   otherwise it's an empty strip on desktop (where the button is hidden) */
+   button for mobile */
 .glossary-mobile-header { display: none; }
 @media (max-width: 820px) {
     .glossary-mobile-header { display: flex; }
@@ -11,9 +10,7 @@
     padding: 24px 32px;
     color: #fff;
 }
-/* visually hidden but still reachable by screen readers - used for the
-   search input's label, which we don't want to show since the placeholder
-   already communicates it visually */
+/* visually hidden but still reachable by screen readers */
 .sr-only {
     position: absolute;
     width: 1px;
@@ -77,8 +74,6 @@
     box-sizing: border-box;
     margin-bottom: 1.5rem;
 }
-/* was rgb(100 116 139), only 3.7:1 against the input background - below
-   the 4.5:1 WCAG AA minimum for text. this shade passes at 6.9:1 */
 .glossary-search-input::placeholder { color: rgb(148 163 184); }
 
 .glossary-count {
@@ -108,8 +103,6 @@
     .glossary-section { grid-template-columns: 1fr; }
 }
 
-/* term name is colored by its section's category - same purple/blue/yellow
-   used for these same topics elsewhere on the site */
 .glossary-term {
     background: rgba(255, 255, 255, 0.02);
     border: 1px solid rgba(148, 163, 184, 0.15);
@@ -128,7 +121,5 @@
     line-height: 1.65;
 }
 .glossary-section[data-category="explorer"]  .glossary-term h3 { color: #ffcb05; }
-/* was #a855f7 (4.5:1, barely passing AA) - this shade holds up better
-   at smaller sizes, 6.8:1 */
 .glossary-section[data-category="radiation"] .glossary-term h3 { color: #c084fc; }
 .glossary-section[data-category="weather"]   .glossary-term h3 { color: #38bdf8; }

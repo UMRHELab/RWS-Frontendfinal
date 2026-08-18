@@ -1,7 +1,5 @@
-/* ==========================================================================
-   Color tokens (read from dashboard-charts.js via getComputedStyle
-   instead of hardcoding hex values in JS)
-   ========================================================================== */
+/* color tokens, read from dashboard-charts.js via getComputedStyle instead
+   of hardcoding hex values in JS */
 
 :root {
     /* Sparkline chart line colors, one per metric */
@@ -29,13 +27,11 @@
 
 }
 
-/* ==========================================================================
-   Utilities (used across index.html components)
-   ========================================================================== */
+/* utilities, used across index.html components */
 
 .hidden { display: none !important; }
 
-/* Pulse/ping animation helpers (keyframes are defined in styles.css) */
+/* Pulse/ping animation helpers (keyframes are defined in base.css) */
 .animate-pulse { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
 .animate-ping  { animation: ping  1s cubic-bezier(0, 0, 0.2, 1)   infinite; }
 
@@ -48,13 +44,8 @@
 /* Flex column with even gap between top-level sections */
 .index-content { display: flex; flex-direction: column; gap: 2.5rem; }
 
-/* ==========================================================================
-   INDEX PAGE — component styles
-   Covers everything unique to index.html (station cards, sparklines,
-   radiation panel, info cards, and the two modals).
-   ========================================================================== */
-
-/* ── Greeting / hero banner ──────────────────────────────────────────────── */
+/* index page styles - station cards, sparklines, radiation panel, info
+   cards, the modal, everything unique to index.html */
 
 .greeting-banner {
     display: flex;
@@ -190,8 +181,6 @@
     padding: 0.125rem 0.5rem;
     border-radius: 0.25rem;
 }
-
-/* ── Section: Data Explorer ──────────────────────────────────────────────── */
 
 .export-data-btn {
     background-color: rgba(30, 41, 59, 0.8);
@@ -357,7 +346,7 @@
 .station-link-btn--basement { color: #f87171; border: 1px solid rgba(248,113,113,0.2); }
 .station-link-btn--rooftop  { color: #38bdf8; border: 1px solid rgba(56,189,248,0.2); }
 
-/* ── Section: Environment Overview ──────────────────────────────────────── */
+/* environment overview section */
 
 .env-section {
     background-color: rgba(10, 16, 32, 0.9);
@@ -486,7 +475,7 @@
     position: relative;
 }
 
-/* ── Radiation Status Panel ──────────────────────────────────────────────── */
+/* radiation status panel */
 
 .rad-col {
     grid-column: span 3 / span 3;
@@ -655,7 +644,7 @@
     color: #94a3b8;
 }
 
-/* ── Section: What We Measure / Highlights / Camera ─────────────────────── */
+/* what we measure / highlights / camera section */
 
 .info-cards-grid {
     display: grid;
@@ -807,7 +796,7 @@
 
 .camera-view-btn:hover { background-color: #1e293b; }
 
-/* ── Sidebar additions ───────────────────────────────────────────────────── */
+/* sidebar additions */
 
 .add-sensor-btn {
     width: 100%;
@@ -829,13 +818,15 @@
 
 .add-sensor-btn svg { width: 0.875rem; height: 0.875rem; flex-shrink: 0; }
 
-/* ── Modals ──────────────────────────────────────────────────────────────── */
+/* modals */
 
+/* shown only when its id matches the URL fragment - no JS needed to
+   open/close it, the trigger and close links just change the fragment */
 .overlay-modal {
+    display: none;
     position: fixed;
     inset: 0;
     z-index: 50;
-    display: flex;
     align-items: center;
     justify-content: center;
     padding: 1rem;
@@ -843,7 +834,7 @@
     backdrop-filter: blur(8px);
 }
 
-.overlay-modal.hidden { display: none; }
+.overlay-modal:target { display: flex; }
 
 .modal-card {
     width: 100%;
@@ -1029,7 +1020,7 @@
     transition: background-color 0.2s;
 }
 
-/* ── Section: News & Updates (compact list, next to Live Camera) ────────── */
+/* news & updates section, compact list next to the live camera */
 
 /* placeholder tile - swap in a real <img> here directly and it takes over
    automatically (same pattern as news.html), no CSS changes needed */
@@ -1445,8 +1436,26 @@
 .glossary-btn--secondary:hover { background: rgba(255, 255, 255, 0.08); }
 .glossary-btn--secondary .glossary-btn-question { color: rgb(148 163 184); }
 .glossary-btn--secondary .glossary-btn-cta { color: #fff; }
-.about-diagram-col { display: flex; justify-content: center; }
-.about-diagram-img { width: 100%; max-width: 760px; height: auto; }
+.about-diagram-col { display: flex; justify-content: center; position: relative; }
+.about-diagram-img { width: 100%; max-width: 760px; height: auto; display: block; }
+
+/* the 3 station variants sit stacked on top of the default image and fade
+   in on hover - :has() lets a hover on a station card (over in the other
+   column) control an image here with no JS in between */
+.about-diagram-img--overlay {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    pointer-events: none;
+}
+.about-row:has(.station-hover-card[data-station="roof"]:hover) .about-diagram-img--roof,
+.about-row:has(.station-hover-card[data-station="mainlab"]:hover) .about-diagram-img--mainlab,
+.about-row:has(.station-hover-card[data-station="basement"]:hover) .about-diagram-img--basement {
+    opacity: 1;
+}
 
 /* teaser card that links out to the full measures.html page */
 .measures-teaser {
@@ -1508,8 +1517,7 @@
 }
 
 /* Hover any card, the diagram swaps to that station's highlighted
-   version. Falls back to the plain diagram if a station doesn't
-   have a highlighted image yet - see the onerror handler in the JS. */
+   version. */
 .station-hover-row {
     display: flex;
     flex-direction: column;

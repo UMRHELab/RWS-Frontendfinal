@@ -11,7 +11,7 @@
     color: #fff;
 }
 
-/* ── Hero + side list ─────────────────────────────────────────────────── */
+/* hero + side list */
 .news-feature-grid {
     display: grid;
     grid-template-columns: 1.6fr 1fr;
@@ -78,8 +78,7 @@
 .news-tag--maintenance { background-color: rgba(251, 113, 133, 0.15); color: #fb7185; }
 .news-tag--info         { background-color: rgba(96, 165, 250, 0.15); color: #60a5fa; }
 
-/* ── Placeholder images - no real photos fit this content, so a plain
-   branded tile stands in rather than a broken/missing image ────────────── */
+/* placeholder images - no real photos fit this content, so a plain branded tile stands in rather than a broken/missing image */
 .news-img-placeholder {
     display: flex;
     align-items: center;

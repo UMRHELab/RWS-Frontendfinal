@@ -1,4 +1,4 @@
-// stuff every page needs: footer, mobile menu, etc
+// stuff every page needs: footer, etc
 
 // grab a color straight from the css so we don't hardcode hex codes
 function cssVar(name) {
@@ -23,32 +23,3 @@ async function loadFooter() {
     }
 }
 loadFooter();
-
-// hooks up the mobile hamburger menu
-function setupMobileNav() {
-    const sidebar = document.querySelector('.sidebar, .app-sidebar');
-    const btn = document.querySelector('.mobile-nav-toggle');
-    const backdrop = document.querySelector('.mobile-nav-backdrop');
-    if (!sidebar || !btn || !backdrop) return;
-
-    btn.addEventListener('click', function () {
-        document.body.classList.toggle('nav-open');
-    });
-
-    // tap a link or tap outside, either way close it
-    function closeMenu() {
-        document.body.classList.remove('nav-open');
-    }
-    backdrop.addEventListener('click', closeMenu);
-
-    const links = sidebar.querySelectorAll('a');
-    for (let i = 0; i < links.length; i++) {
-        links[i].addEventListener('click', closeMenu);
-    }
-}
-
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', setupMobileNav);
-} else {
-    setupMobileNav();
-}

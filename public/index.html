@@ -7,14 +7,13 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@3.0.1/dist/chartjs-plugin-annotation.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
-    <link rel="stylesheet" href="../styles/styles.css">
-    <link rel="stylesheet" href="../styles/sidebar.css">
-    <link rel="stylesheet" href="../styles/footer.css">
+    <link rel="stylesheet" href="../styles/base.css">
     <link rel="stylesheet" href="../styles/index.css">
 </head>
 <body>
 
-    <div class="mobile-nav-backdrop"></div>
+    <input type="checkbox" id="mobile-nav-checkbox" class="mobile-nav-checkbox">
+    <label for="mobile-nav-checkbox" class="mobile-nav-backdrop"></label>
 
     <aside class="sidebar">
         <div class="sidebar-header">
@@ -40,7 +39,7 @@
     <div class="main-viewport">
 
         <header class="global-header">
-            <button class="mobile-nav-toggle" aria-label="Open menu"><span></span><span></span><span></span></button>
+            <label for="mobile-nav-checkbox" class="mobile-nav-toggle" aria-label="Open menu"><span></span><span></span><span></span></label>
             <div class="header-left">
                 <div class="network-badge">
                     <span class="network-ping-dot"></span>
@@ -121,22 +120,25 @@
                         <p class="station-hover-hint">Try hovering over these cards!</p>
                         <div class="station-hover-hint-arrow">&darr;</div>
                         <div class="station-hover-row">
-                            <div class="station-hover-card" data-station="roof" data-diagram="images/about-diagram-roof.png">
+                            <div class="station-hover-card" data-station="roof">
                                 <h4>Rooftop</h4>
                                 <span class="station-room-num">Room 1958</span>
                             </div>
-                            <div class="station-hover-card" data-station="mainlab" data-diagram="images/about-diagram-mainlab.png">
+                            <div class="station-hover-card" data-station="mainlab">
                                 <h4>Main Lab</h4>
                                 <span class="station-room-num">Room 1962</span>
                             </div>
-                            <div class="station-hover-card" data-station="basement" data-diagram="images/about-diagram-basement.png">
+                            <div class="station-hover-card" data-station="basement">
                                 <h4>Basement</h4>
                                 <span class="station-room-num">Room G963A</span>
                             </div>
                         </div>
                     </div>
                     <div class="about-diagram-col">
-                        <img src="images/about-diagram.png" alt="Building cross-section diagram showing rooftop, lab, and basement sensor locations" class="about-diagram-img" id="about-diagram-img" data-default-src="images/about-diagram.png">
+                        <img src="images/about-diagram.png" alt="Building cross-section diagram showing rooftop, lab, and basement sensor locations" class="about-diagram-img">
+                        <img src="images/about-diagram-roof.png" alt="" aria-hidden="true" class="about-diagram-img about-diagram-img--overlay about-diagram-img--roof">
+                        <img src="images/about-diagram-mainlab.png" alt="" aria-hidden="true" class="about-diagram-img about-diagram-img--overlay about-diagram-img--mainlab">
+                        <img src="images/about-diagram-basement.png" alt="" aria-hidden="true" class="about-diagram-img about-diagram-img--overlay about-diagram-img--basement">
                     </div>
                 </div>
             </section>
@@ -315,11 +317,11 @@
                                 </div>
                             </div>
 
-                            <button onclick="openModal('rad-info-modal')" class="rad-explain-btn">
+                            <a href="#rad-info-modal" class="rad-explain-btn">
                                 <span class="info-badge">i</span>
                                 <span>What does this mean?</span>
                                 <span class="arrow">›</span>
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -392,11 +394,11 @@
         </main>
     </div>
 
-    <div id="rad-info-modal" class="overlay-modal hidden" role="dialog" aria-modal="true" aria-labelledby="rad-info-modal-title">
+    <div id="rad-info-modal" class="overlay-modal" role="dialog" aria-modal="true" aria-labelledby="rad-info-modal-title">
         <div class="rad-modal-card">
             <div class="modal-header">
                 <h2 id="rad-info-modal-title">What is background radiation?</h2>
-                <button onclick="closeModal('rad-info-modal')" class="modal-close-btn" aria-label="Close">✕</button>
+                <a href="#!" class="modal-close-btn" aria-label="Close">✕</a>
             </div>
 
             <div class="rad-modal-body">

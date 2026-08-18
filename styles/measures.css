@@ -33,7 +33,7 @@
     border: 0;
 }
 
-/* ── Quick overview row ──────────────────────────────────────────────── */
+/* quick overview row */
 .measures-grid {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -106,7 +106,7 @@
 .measure-icon--weather { background-color: #1c323a; border: 1px solid rgba(56, 189, 248, 0.2); }
 .measure-icon--soil    { background-color: #1c3a25; border: 1px solid rgba(34, 197, 94, 0.2); }
 
-/* ── Detailed per-station breakdown ──────────────────────────────────── */
+/* detailed per-station breakdown */
 .measures-detail-heading {
     margin: 0 0 0.5rem;
     font-size: 1.25rem;

@@ -245,52 +245,9 @@ async function updateLiveChart() {
     plotNewReading(sensor);
 }
 
-// shared open/close for both popups on this page
-function openModal(id) {
-    const modal = document.getElementById(id);
-    if (modal) modal.classList.remove('hidden');
-}
-function closeModal(id) {
-    const modal = document.getElementById(id);
-    if (modal) modal.classList.add('hidden');
-}
-
-// swaps the diagram's image, preloading first so there's no broken-image
-// flash while the new one loads
-function swapDiagram(img, src) {
-    if (img.src.endsWith(src)) return;
-    const preload = new Image();
-    preload.onload = function () {
-        img.src = src;
-    };
-    preload.src = src;
-}
-
-// hover a station card in the About section, the diagram swaps to that
-// station's highlighted image (composite art with its own "what it
-// measures" card baked in)
-function setupStationHoverCards() {
-    const img = document.getElementById('about-diagram-img');
-    const cards = document.querySelectorAll('.station-hover-card');
-    if (!img || !cards.length) return;
-
-    const defaultSrc = img.dataset.defaultSrc;
-
-    for (let i = 0; i < cards.length; i++) {
-        const card = cards[i];
-        card.addEventListener('mouseenter', function () {
-            swapDiagram(img, card.dataset.diagram);
-        });
-        card.addEventListener('mouseleave', function () {
-            swapDiagram(img, defaultSrc);
-        });
-    }
-}
-
 // kick everything off once the page loads
 window.onload = function () {
     initAllCharts();
     updateLiveChart();
     setInterval(updateLiveChart, 10000); // poll every 10 seconds
-    setupStationHoverCards();
 };
