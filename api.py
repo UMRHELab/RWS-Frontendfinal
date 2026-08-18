@@ -145,7 +145,7 @@ def get_sensor_columns():
             if row['Field'] not in excluded_columns
             and row['Type'].lower().startswith(numeric_type_prefixes)
         ]
-        if sensor_type == 'rad8' or sensor_type = 'sword' or sensor_type == 'gamon_s':
+        if sensor_type == 'rad8' or sensor_type == 'sword' or sensor_type == 'gamon_s':
             columns.append('counts')
         return jsonify({
             'columns': columns
