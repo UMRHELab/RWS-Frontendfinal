@@ -1,0 +1,11 @@
+# Password-gate this directory for testing access.
+# Non-technical testers just get a normal browser login popup — no terminal/SSH needed.
+#
+# IMPORTANT: AuthUserFile below needs the ABSOLUTE server filesystem path to .htpasswd,
+# not a relative one. Replace the placeholder path with the real one for this MiServer
+# account (ask whoever manages the hosting, or temporarily drop a file containing
+# `<?php echo __DIR__; ?>` in this folder, load it, then delete it).
+AuthType Basic
+AuthName "RWS Dashboard - Testing (Restricted Access)"
+AuthUserFile "/REPLACE/WITH/ABSOLUTE/PATH/TO/rws-lite/public/.htpasswd"
+Require valid-user
