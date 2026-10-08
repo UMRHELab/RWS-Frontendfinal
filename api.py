@@ -1,9 +1,13 @@
-# need to pip install flask and pip install flask-cors to run this
+# pip install -r requirements.txt to run this
+import os
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import pymysql
 import numpy as np
 import json
+from dotenv import load_dotenv
+
+load_dotenv()  # reads .env in this directory into the environment, if present
 
 app = Flask(__name__)
 # Restrict to the actual frontend + local dev, instead of allowing any origin.
@@ -13,13 +17,21 @@ CORS(app, origins=[
     "http://localhost:8000",
 ])
 
+REQUIRED_ENV_VARS = ["DB_HOST", "DB_USER", "DB_PASSWORD", "DB_NAME"]
+missing = [v for v in REQUIRED_ENV_VARS if not os.environ.get(v)]
+if missing:
+    raise RuntimeError(
+        f"Missing required env var(s): {', '.join(missing)}. "
+        f"Copy .env.example to .env and fill in real values."
+    )
+
 def get_connection():
     """Get database connection to php MySQL database."""
     return pymysql.connect(
-        host="webapps3-db.miserver.it.umich.edu",
-        user="rws_data_test",
-        password="7N22Mn5V_y",
-        database="rws_data_test",
+        host=os.environ["DB_HOST"],
+        user=os.environ["DB_USER"],
+        password=os.environ["DB_PASSWORD"],
+        database=os.environ["DB_NAME"],
         charset="utf8mb4",
         init_command="SET NAMES utf8mb4 COLLATE utf8mb4_unicode_ci",
         cursorclass=pymysql.cursors.DictCursor
