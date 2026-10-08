@@ -101,7 +101,11 @@ let lastGoodSensor = null;
 let lastPlottedSignature = null;
 
 // returns readings grouped by sensor type (rad8, cr1000), not one flat object
-const HOMEPAGE_API_URL = "http://127.0.0.1:5001/api/presentation-data";
+// Local dev (frontend+API on the same machine) still hits the Flask dev server directly;
+// anywhere else, go through the same-origin /api proxy instead of a hardcoded host:port.
+const HOMEPAGE_API_URL = (location.hostname === "127.0.0.1" || location.hostname === "localhost")
+    ? "http://127.0.0.1:5001/api/presentation-data"
+    : "/api/presentation-data";
 
 // rounds a number into an element, skips it if null
 function setReadout(id, val, dec) {

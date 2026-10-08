@@ -1,6 +1,10 @@
 // Building → Room → Sensor → Metric → Time Range → Chart
 
-const API_BASE = "http://127.0.0.1:5001/api"; // 5000 collides with macOS AirPlay Receiver
+// Local dev (frontend+API on the same machine) still hits the Flask dev server directly;
+// anywhere else, go through the same-origin /api proxy instead of a hardcoded host:port.
+const API_BASE = (location.hostname === "127.0.0.1" || location.hostname === "localhost")
+    ? "http://127.0.0.1:5001/api" // 5000 collides with macOS AirPlay Receiver
+    : "/api";
 
 async function getJSON(path) {
     const response = await fetch(API_BASE + path);

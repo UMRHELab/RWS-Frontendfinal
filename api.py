@@ -6,7 +6,12 @@ import numpy as np
 import json
 
 app = Flask(__name__)
-CORS(app)
+# Restrict to the actual frontend + local dev, instead of allowing any origin.
+CORS(app, origins=[
+    "https://frontend.junkjunknasnas.uk",
+    "http://127.0.0.1:8000",
+    "http://localhost:8000",
+])
 
 def get_connection():
     """Get database connection to php MySQL database."""
